@@ -40,9 +40,4 @@ while p:
         else:
             p=False
             print('---You are away from the game ---')
-            break
-
-
-
-
-        
+            break        
