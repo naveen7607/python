@@ -1,3 +1,4 @@
+#code for Rock-Paper-Scissor
 import random
 l=['ROCK','PAPER','SCISSOR']
 k=random.choice(l)
