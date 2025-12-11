@@ -53,12 +53,11 @@ def x_mark(n1):
     t.goto(pos[n1-1][0]+50,pos[n1-1][1]-50)
 
 def o_mark(n1):
-    t.color('skyblue')
+    t.color('yellow')
     t.penup()
     t.goto(pos[n1-1][0]-50,pos[n1-1][1])
     t.pendown()
     t.circle(50,360)
-    
 
 board=[' ',' ',' ',' ',' ',' ',' ',' ',' ']  #making a board
 condition=True
@@ -66,60 +65,76 @@ cross_board()
 #for marking X in board
 def o_marking(n1):
     global board
-    if n1>9 or n1<1:
-        s.undo()
-        s.write(f"Invalid input", font=("Arial", 16, "normal"),align="center")
-        s.undo()
-        num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
-        s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
-        return o_marking(int(num))
-    elif board[n1-1]=='O':
-        s.undo()
-        s.write(f"{name1} already take this position", font=("Arial", 16, "normal"))
-        num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
-        s.undo()
-        s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
-        return o_marking(int(num))
-    elif board[n1-1]=='X':
-        s.undo()
-        s.write(f"{name2} already take this position", font=("Arial", 16, "normal"))
-        num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
-        s.undo()
-        s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
-        return o_marking(int(num))
-    else:
-        board[n1-1]='O'
-        o_mark(n1)
+    try:
+        if n1>9 or n1<1:
+            s.undo()
+            s.write(f"Invalid Range", font=("Arial", 16, "normal"),align="center")
+            num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
+            s.undo()
+            s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
+            return o_marking(int(num))
+        elif board[n1-1]=='O':
+            s.undo()
+            s.write(f"{name1} already take this position", font=("Arial", 16, "normal"),align="center")
+            num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
+            s.undo()
+            s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
+            return o_marking(int(num))
+        elif board[n1-1]=='X':
+            s.undo()
+            s.write(f"{name2} already take this position", font=("Arial", 16, "normal"),align="center")
+            num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
+            s.undo()
+            s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
+            return o_marking(int(num))
+        else:
+            board[n1-1]='O'
+            o_mark(n1)
         #print(' '+'|'.join(board[:3]),'\n','|'.join(board[3:6]),'\n','|'.join(board[6:]))
+    except:
+        s.undo()
+        s.write(f"Invalid Value Take any Integer", font=("Arial", 16, "normal"),align="center")
+        num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
+        s.undo()
+        s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
+        return o_marking(int(num))
 
 #for marking X in board
 def x_marking(n2):
     global board
-    if n2>9 or n2<1:
+    try:
+        if n2>9 or n2<1:
+            s.undo()
+            s.write(f"Invalid Range", font=("Arial", 16, "normal"),align="center")
+            num=turtle.numinput("Error Handle", "Enter a new number to mark with X:")
+            s.undo()
+            s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
+            return x_marking(int(num))
+        elif board[n2-1]=='O':
+            s.undo()
+            s.write(f"{name1} already take this position", font=("Arial", 16, "normal"),align='center')
+            num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
+            s.undo()
+            s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
+            return x_marking(int(num))
+        elif board[n2-1]=='X':
+            s.undo()
+            s.write(f"{name2} already take this position", font=("Arial", 16, "normal"),align="center")
+            num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
+            s.undo()
+            s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
+            return x_marking(int(num))
+        else:
+            board[n2-1]='X'
+            x_mark(n2)
+            #print(' '+'|'.join(board[:3]),'\n','|'.join(board[3:6]),'\n','|'.join(board[6:]))
+    except:
         s.undo()
-        ss.write(f"Invalid input", font=("Arial", 16, "normal"),align="center")
+        s.write(f"Invalid Value Take any Integer", font=("Arial", 16, "normal"),align="center")
         num=turtle.numinput("Error Handle", "Enter a new number to mark with X:")
         s.undo()
-        s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
+        s.write(f"{name2} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
         return x_marking(int(num))
-    elif board[n2-1]=='O':
-        s.undo()
-        s.write(f"{name1} already take this position", font=("Arial", 16, "normal"),align='center')
-        num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
-        s.undo()
-        s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
-        return x_marking(int(num))
-    elif board[n2-1]=='X':
-        s.undo()
-        s.write(f"{name2} already take this position", font=("Arial", 16, "normal"))
-        num=turtle.numinput("Error Handle", "Enter a new number to mark with O:")
-        s.undo()
-        s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
-        return x_marking(int(num))
-    else:
-        board[n2-1]='X'
-        x_mark(n2)
-        #print(' '+'|'.join(board[:3]),'\n','|'.join(board[3:6]),'\n','|'.join(board[6:]))
 
 
 def winner():
@@ -145,19 +160,19 @@ def winner():
         condition=False
 
     if board[0]==board[1]==board[2]=='X' or board[3]==board[4]==board[5]=='X' or board[6]==board[7]==board[8]=='X':
-        print(name2,'Won the Match')
+        print(name2.capitalize(),'Won the Match')
         style = ("Arial", 24, "bold")
         s.undo()
         s.write(name2.capitalize()+" Won the Match", font=style, align="center")
         condition=False
     elif board[0]==board[3]==board[6]=='X' or board[1]==board[4]==board[7]=='X' or board[2]==board[5]==board[8]=='X':
-        print(name2,'Won the Match')
+        print(name2.capitalize(),'Won the Match')
         style = ("Arial", 24, "bold")
         s.undo()
         s.write(name2.capitalize()+" Won the Match", font=style, align="center")
         condition=False
     elif board[0]==board[4]==board[8]=='X' or board[2]==board[4]==board[6]=='X':
-        print(name2,'Won the Match')
+        print(name2.capitalize(),'Won the Match')
         style = ("Arial", 24, "bold")
         s.undo()
         s.write(name2.capitalize()+" Won the Match", font=style, align="center")
@@ -173,13 +188,18 @@ def winner():
 
 #giving names
 name1=turtle.textinput("Person-1", "Enter your name:")
+s.undo()
+s.write("Hello "+name1, font=("Arial", 16, "normal"),align='center')
 name2=turtle.textinput("Person-2", "Enter your name:")
+s.undo()
+s.write("Hello "+name2, font=("Arial", 16, "normal"),align='center')
 print(' '+'|'.join(['1','2','3']),'\n','|'.join(['4','5','6']),'\n','|'.join(['7','8','9']))
+s.undo()
+s.write("Let's Begin the Game", font=("Arial", 16, "normal"),align='center')
 
 #Main Game Loop
 while condition:
     num = turtle.numinput("Number Prompt", "Enter a number to mark with O:")
-    # Write it
     s.undo()
     s.write(f"{name1} entered: {int(num)}", font=("Arial", 16, "normal"),align="center")
     o_marking(int(num))
@@ -196,4 +216,5 @@ while condition:
     if condition==False:   #termination condition
         break
 time.sleep(3)
+turtle.exitonclick()
 turtle.done()
