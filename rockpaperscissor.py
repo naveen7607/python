@@ -1,0 +1,47 @@
+import random
+l=['ROCK','PAPER','SCISSOR']
+k=random.choice(l)
+p=True
+while p:
+    print('--- 1.Rock     2.Paper     3.Scissor ---')
+    y=int(input('enter your choice : '))
+    if y<1 or y>3:
+        print('-> Invalid Input <-')
+        continue
+    t=l[y-1]
+    if k==t:
+        print('Draw :-|')
+    elif t=='ROCK':
+        if k=='PAPER':
+            print('--> Computer Won :\'(')
+        else:
+            print('--> You Won :-)')
+    elif t=='PAPER':
+        if k=='SCISSOR':
+            print('--> Computer Won :\'(')
+        else:
+            print('--> You Won :-)')
+    elif t=='SCISSOR':
+        if k=='ROCK':
+            print('--> Computer Won :\'(')
+        else:
+            print('--> You Won :-)')
+    while True:
+        print('if you want to play the fresh game : ')
+        s=int(input('enter 1 to continue  0 to exit : '))
+        if s<0 or s>1:
+            print('Invalid Input')
+            continue
+        elif s==1:
+            p=True
+            print('-- let\'s play another game --')
+            break
+        else:
+            p=False
+            print('---You are away from the game ---')
+            break
+
+
+
+
+        
